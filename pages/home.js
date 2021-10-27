@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../modules/header/header.js';
 
-const Hello = () => <Header />;
+const Home = () => <Header />;
 
-export default Hello;
+export default Home;
