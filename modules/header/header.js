@@ -1,3 +1,4 @@
+import React from 'react';
 import Image from 'next/image';
 
 import LogoImg from '../../assets/logo.png';
@@ -38,5 +39,4 @@ const Header = () => {
         </header>
     );
 };
-
 export default Header;
