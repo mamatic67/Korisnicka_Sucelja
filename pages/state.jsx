@@ -37,10 +37,12 @@ const Student = ({ name, lName, imgSrc }) => {
 
 const StateDemo = () => {
     const [students, setStudents] = useState(studentsOut);
-    const [name, setName] = useState('');
-    const [lastName, setLastName] = useState('');
+    const [newStudent, setNewStudent] = useState({
+        name: '',
+        lName: '',
+        imgSrc: '/profile.jpg',
+    });
 
-    console.log({ name, lName: lastName });
     return (
         <main>
             <h1 className="text-center mt-5 mb-5 font-bold text-4xl underline">
@@ -53,28 +55,32 @@ const StateDemo = () => {
             </ul>
             <section className="flex flex-col w-64 justify-center items-center my-0 mx-auto border-gray-500">
                 <input
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    value={newStudent.name}
+                    onChange={(e) =>
+                        setNewStudent({ ...newStudent, name: e.target.value })
+                    }
                     className="border-b-2 outline-none mt-5 border-solid border-gray-500"
                     type="text"
                     placeholder="Name"
                 />
                 <input
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
+                    value={newStudent.lName}
+                    onChange={(e) =>
+                        setNewStudent({ ...newStudent, lName: e.target.value })
+                    }
                     className="border-b-2 outline-none mt-5 border-solid border-gray-500"
                     type="text"
                     placeholder="Last name"
                 />
                 <button
                     onClick={() => {
-                        const newGuy = {
-                            id: name + lastName,
-                            name,
-                            lName: lastName,
-                            imgSrc: '/profile.jpg',
-                        };
-                        setStudents([...students, newGuy]);
+                        setStudents([
+                            ...students,
+                            {
+                                ...newStudent,
+                                id: newStudent.name + newStudent.lName,
+                            },
+                        ]);
                     }}
                     className="mt-5 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
                 >
