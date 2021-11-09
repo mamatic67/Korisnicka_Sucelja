@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 
 const studentsOut = [
@@ -36,23 +36,32 @@ const Student = ({ name, lName, imgSrc }) => {
 };
 
 const StateDemo = () => {
+    const [students, setStudents] = useState(studentsOut);
+    const [name, setName] = useState('');
+    const [lName, setLastName] = useState('');
+
+    console.log({ name, lName });
     return (
         <main>
             <h1 className="text-center mt-5 mb-5 font-bold text-4xl underline">
                 Welcome to state demo!
             </h1>
             <ul className="flex flex-col items-center justify-around">
-                {studentsOut.map((el) => (
+                {students.map((el) => (
                     <Student key={el.id} {...el} />
                 ))}
             </ul>
             <section className="flex flex-col w-64 justify-center items-center my-0 mx-auto border-gray-500">
                 <input
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                     className="border-b-2 outline-none mt-5 border-solid border-gray-500"
                     type="text"
                     placeholder="Name"
                 />
                 <input
+                    value={lName}
+                    onChange={(e) => setLastName(e.target.value)}
                     className="border-b-2 outline-none mt-5 border-solid border-gray-500"
                     type="text"
                     placeholder="Last name"
