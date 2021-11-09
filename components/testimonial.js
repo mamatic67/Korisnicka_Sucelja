@@ -28,7 +28,9 @@ const Testimonial = ({ caption, imageSrc }) => (
         </div>
         <div className="h-1/5 bg-gray-300 items-center justify-center relative hidden sm:flex">
             <p className="capitalize font-roboto-condensed text-xl text-hci-lila">
-                <Link href={`/testimonials${imageSrc}`}>{caption}</Link>
+                <Link href={`/testimonials/${encodeURIComponent(caption)}`}>
+                    {caption}
+                </Link>
             </p>
             <div className="absolute right-4 h-full flex items-center">
                 <Image

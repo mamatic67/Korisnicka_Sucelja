@@ -1,5 +1,9 @@
+import { useRouter } from 'next/router';
+
 const Testimonial = () => {
-    return <h1 className="text-2xl">HI</h1>;
+    const router = useRouter();
+
+    return <h1 className="text-2xl">HI! You are on {router.query.testimonialId}</h1>;
 };
 
 export default Testimonial;
