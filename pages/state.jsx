@@ -38,9 +38,9 @@ const Student = ({ name, lName, imgSrc }) => {
 const StateDemo = () => {
     const [students, setStudents] = useState(studentsOut);
     const [name, setName] = useState('');
-    const [lName, setLastName] = useState('');
+    const [lastName, setLastName] = useState('');
 
-    console.log({ name, lName });
+    console.log({ name, lName: lastName });
     return (
         <main>
             <h1 className="text-center mt-5 mb-5 font-bold text-4xl underline">
@@ -60,13 +60,24 @@ const StateDemo = () => {
                     placeholder="Name"
                 />
                 <input
-                    value={lName}
+                    value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
                     className="border-b-2 outline-none mt-5 border-solid border-gray-500"
                     type="text"
                     placeholder="Last name"
                 />
-                <button className="mt-5 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                <button
+                    onClick={() => {
+                        const newGuy = {
+                            id: name + lastName,
+                            name,
+                            lName: lastName,
+                            imgSrc: '/profile.jpg',
+                        };
+                        setStudents([...students, newGuy]);
+                    }}
+                    className="mt-5 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                >
                     Submit
                 </button>
             </section>
