@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Testimonial = ({ caption, imageSrc }) => (
     <div className="h-96 sm:border hover:cursor-pointer first:mt-0">
@@ -27,7 +28,7 @@ const Testimonial = ({ caption, imageSrc }) => (
         </div>
         <div className="h-1/5 bg-gray-300 items-center justify-center relative hidden sm:flex">
             <p className="capitalize font-roboto-condensed text-xl text-hci-lila">
-                {caption}
+                <Link href={`/testimonials${imageSrc}`}>{caption}</Link>
             </p>
             <div className="absolute right-4 h-full flex items-center">
                 <Image
