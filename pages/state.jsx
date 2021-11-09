@@ -42,17 +42,22 @@ const StateDemo = () => {
         lName: '',
         imgSrc: '/profile.jpg',
     });
+    const [showStudents, setShowStudents] = useState(true);
 
     return (
         <main>
             <h1 className="text-center mt-5 mb-5 font-bold text-4xl underline">
                 Welcome to state demo!
             </h1>
-            <ul className="flex flex-col items-center justify-around">
-                {students.map((el) => (
-                    <Student key={el.id} {...el} />
-                ))}
-            </ul>
+            {showStudents ? (
+                <ul className="flex flex-col items-center justify-around">
+                    {students.map((el) => (
+                        <Student key={el.id} {...el} />
+                    ))}
+                </ul>
+            ) : (
+                <p className="text-center">No students, sorry</p>
+            )}
             <section className="flex flex-col w-64 justify-center items-center my-0 mx-auto border-gray-500">
                 <input
                     value={newStudent.name}
@@ -82,11 +87,17 @@ const StateDemo = () => {
                             },
                         ]);
                     }}
-                    className="mt-5 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                    className="my-5 cursor-pointer bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
                 >
                     Submit
                 </button>
             </section>
+            <button
+                onClick={() => setShowStudents(!showStudents)}
+                className="block mx-auto cursor-pointer bg-transparent hover:bg-green-500 text-green-700 font-semibold hover:text-white py-2 px-4 border border-green-500 hover:border-transparent rounded"
+            >
+                Toggle
+            </button>
         </main>
     );
 };
