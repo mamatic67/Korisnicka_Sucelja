@@ -39,13 +39,19 @@ const StateDemo = () => {
     const [name, setName] = useState('');
     const [lastName, setLastName] = useState('');
     const [students, setStudents] = useState(studentsOut);
+    // Conditional Rendering
+    const [showStudents, setShowStudents] = useState(false);
 
     return (
         <main>
             <h1 className="text-center mt-5 mb-5 font-bold text-4xl underline">
                 Welcome to state demo!
             </h1>
-            <ul className="flex flex-col items-center justify-around">
+            <ul
+                className={`${
+                    showStudents ? '' : 'opacity-0'
+                } flex flex-col items-center justify-around`}
+            >
                 {students.map((el) => (
                     <Student key={el.id} {...el} />
                 ))}
@@ -77,6 +83,12 @@ const StateDemo = () => {
                     className="mt-5 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
                 >
                     Submit
+                </button>
+                <button
+                    onClick={() => setShowStudents(!showStudents)}
+                    className="mt-5 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                >
+                    Toggle
                 </button>
             </section>
         </main>
