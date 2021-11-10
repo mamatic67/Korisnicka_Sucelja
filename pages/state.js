@@ -38,8 +38,7 @@ const Student = ({ name, lName, imgSrc }) => {
 const StateDemo = () => {
     const [name, setName] = useState('');
     const [lastName, setLastName] = useState('');
-
-    console.log({ name, lastName });
+    const [students, setStudents] = useState(studentsOut);
 
     return (
         <main>
@@ -47,7 +46,7 @@ const StateDemo = () => {
                 Welcome to state demo!
             </h1>
             <ul className="flex flex-col items-center justify-around">
-                {studentsOut.map((el) => (
+                {students.map((el) => (
                     <Student key={el.id} {...el} />
                 ))}
             </ul>
@@ -66,7 +65,17 @@ const StateDemo = () => {
                     onChange={(e) => setLastName(e.target.value)}
                     placeholder="Last name"
                 />
-                <button className="mt-5 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                <button
+                    onClick={() => {
+                        const newStudent = {
+                            name,
+                            lName: lastName,
+                            imgSrc: '/profile.jpg',
+                        };
+                        setStudents([...students, newStudent]);
+                    }}
+                    className="mt-5 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+                >
                     Submit
                 </button>
             </section>
